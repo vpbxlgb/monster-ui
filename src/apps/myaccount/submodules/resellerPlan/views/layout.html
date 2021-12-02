@@ -1,0 +1,51 @@
+<div class="account-content-wrapper">
+	<ul class="list-settings">
+		<li class="settings-item clearfix open" data-name="account_name">
+			{{#if billing}}
+			<div class="settings-link clearfix">
+				<span class="description">{{i18n.resellerPlan.your_plan_is}} {{billing.ProductName}} {{billing.PlanName}}</span>
+			</div>
+			<div class="settings-item-content" style="display: block;">
+				<div class="row-fluid">
+					<div class="span12">
+						<form class="form-horizontal" id="form_account_name">
+							<div class="control-group">
+								<label class="control-label">{{ i18n.resellerPlan.bill_balance }}</label>
+								<div class="controls">
+									<div class="plain-text">{{billing.AccountBalance}}</div>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{{ i18n.resellerPlan.next_bill_cycle_date}}</label>
+								<div class="controls">
+									<div class="plain-text">{{billing.billCycleDate}}</div>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{{ i18n.resellerPlan.billing_address }}</label>
+								<div class="controls">
+									<div class="plain-text">{{billing.CompanyName}}</div>
+									<div class="plain-text">{{billing.Address1}}</div>
+									<div class="plain-text">{{billing.Address2}}</div>
+									<div class="plain-text">{{billing.City}}</div>
+									<div class="plain-text">{{billing.State}}</div>
+									<div class="plain-text">{{billing.ZipCode}}</div>
+									<div class="plain-text">{{billing.Country}}</div>
+								</div>
+							</div>
+							<!-- <div class="control-group">
+									<div class="plain-text">{{ i18n.resellerPlan.notice }}</div>
+							</div> -->
+						</form>
+					</div>
+				</div>
+			</div>
+			{{else}}
+			<div class="settings-link clearfix" style="border-bottom: none;">
+				<span class="description">{{ i18n.resellerPlan.not_available }}</span>
+			</div>
+			{{/if}}
+		</li>
+	</ul>
+</div>
+

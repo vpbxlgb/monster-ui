@@ -173,6 +173,7 @@
 				'updatePresence': { verb: 'POST', url: 'accounts/{accountId}/device/{deviceId}/presence' }
 			},
 			directory: {
+				'users': { verb: 'GET', url: 'accounts/{accountId}/directories/{directoryId}/users' },
 				'get': { verb: 'GET', url: 'accounts/{accountId}/directories/{directoryId}' },
 				'create': { verb: 'PUT', url: 'accounts/{accountId}/directories' },
 				'update': { verb: 'POST', url: 'accounts/{accountId}/directories/{directoryId}' },

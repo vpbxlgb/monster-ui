@@ -22,22 +22,23 @@
 				</li>
 				{{/if}}
 
-				{{#if restrictions.user.show_tab}}
-				<li class="myaccount-element" data-module="user">
-					<a href="javascript:void(0);">
-						<span class="active-highlight">
-							<i class="fa fa-user"></i>
-							<span class="element-name">{{ i18n.user.title }}</span>
-						</span>
-					</a>
-				</li>
-				{{/if}}
 				{{#if restrictions.account.show_tab}}
 				<li class="myaccount-element" data-module="account">
 					<a href="javascript:void(0);">
 						<span class="active-highlight">
 							<i class="fa fa-cogs"></i>
 							<span class="element-name">{{ i18n.account.title }}</span>
+						</span>
+					</a>
+				</li>
+				{{/if}}
+				
+				{{#if restrictions.user.show_tab}}
+				<li class="myaccount-element" data-module="user">
+					<a href="javascript:void(0);">
+						<span class="active-highlight">
+							<i class="fa fa-user"></i>
+							<span class="element-name">{{ i18n.user.title }}</span>
 						</span>
 					</a>
 				</li>
@@ -72,15 +73,56 @@
 				</li>
 				{{/if}}
 				{{#if restrictions.service_plan.show_tab}}
-				<li class="myaccount-element" data-module="servicePlan">
+				<!--<li class="myaccount-element" data-module="servicePlan">
 					<a href="javascript:void(0);">
 						<div class="active-highlight">
 							<i class="fa fa-calendar"></i>
 							<span class="element-name">{{ i18n.servicePlan.title }}</span>
 						</div>
 					</a>
+				</li>-->
+				<li class="myaccount-element" data-module="resellerPlan">
+					<a href="javascript:void(0);">
+						<div class="active-highlight">
+							<i class="fa fa-calendar"></i>
+							<span class="element-name">{{ i18n.resellerPlan.title }}</span>
+						</div>
+					</a>
 				</li>
+				<li class="myaccount-element" data-module="resellerInvoices">
+					<a href="javascript:void(0);">
+						<div class="active-highlight">
+							<i class="fa fa-file"></i>
+							<span class="element-name">{{ i18n.resellerInvoices.title }}</span>
+						</div>
+					</a>
+				</li>
+				<li class="myaccount-element" data-module="resellerPaymentmethod">
+					<a href="javascript:void(0);">
+						<div class="active-highlight">
+							<i class="fa fa-credit-card"></i>
+							<span class="element-name">{{ i18n.resellerPaymentmethod.title }}</span>
+						</div>
+					</a>
+				</li>
+				<li class="myaccount-element" data-module="resellerContact">
+					<a href="javascript:void(0);">
+						<div class="active-highlight">
+							<i class="fa fa-envelope"></i>
+							<span class="element-name">{{ i18n.resellerContact.title }}</span>
+						</div>
+					</a>
+				</li>
+				<!-- <li class="myaccount-element" data-module="resellerUsage">
+					<a href="javascript:void(0);">
+						<div class="active-highlight">
+							<i class="fa fa-bar-chart"></i>
+							<span class="element-name">{{ i18n.resellerUsage.title }}</span>
+						</div>
+					</a>
+				</li> -->
 				{{/if}}
+
 				{{#if restrictions.transactions.show_tab}}
 				<li class="myaccount-element" data-module="transactions">
 					<a href="javascript:void(0);">

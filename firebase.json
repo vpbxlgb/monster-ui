@@ -1,0 +1,30 @@
+{
+	"hosting": {
+		// "site": "dash-tools",
+		// "site": "dash-tools-beta",
+		"site": "dash-beta",
+		// "site": "dashdev",
+		// "site": "dash-demo-994bb",
+		// "site": "dash-global-med",
+		// "site": "dashboard-f1c2b",
+		"public": "dist",
+		"ignore": [
+			"**/.*",
+			"**/node_modules/**",
+			"**/src/**",
+			"**/gulp/**",
+			"**/docs/**",
+			"**/*.md",
+			"**/*.log",
+			"TODO",
+			"build.txt"
+		],
+		"headers": [{
+			"source": "/**",
+			"headers": [{
+				"key": "Cache-Control",
+				"value": "max-age=300"
+			}]
+		}]
+	}
+}

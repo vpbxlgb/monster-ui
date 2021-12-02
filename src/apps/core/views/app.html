@@ -21,10 +21,163 @@
 					</div>
 				</li>
 				<li id="main_topbar_apploader">
-					<ul id="appList"></ul>
+					<!-- <ul id="appList"></ul>
 					<a href="javascript:void(0);" class="links" id="main_topbar_apploader_link" {{#unless useDropdownApploader}}data-title="{{i18n.apps}}" data-placement="bottom" data-toggle="tooltip"{{/unless}}>
 						<i class="icon-telicon-apps"></i>
-					</a>
+					</a> -->
+				</li>
+				<li id="main_topbar_help">
+					<div class="navdropdown"><a href="#" class="links"><i class="fa fa-question-circle" data-title="{{i18n.virtualpbx.data_title.help}}" data-placement="bottom" data-toggle="tooltip"></i></a>
+						<div class="navdropdown-content">
+							<ul>
+								<li id="main_help_intercom">
+									<a href="#" class="links" id="main_help_intercom_link" data-title="{{i18n.virtualpbx.data_title.chat}}" data-placement="bottom" data-toggle="tooltip">
+										<span class="inline-text">{{i18n.virtualpbx.topbar.chat}}</span>
+										<i class="fa fa-comment"></i>
+									</a>
+								</li>
+								<li id="main_topbar_webphone" style="display: none;">
+									<a href="#" target="_blank" class="links" id="main_topbar_webphone_link" data-title="{{i18n.virtualpbx.data_title.webphone}}" data-placement="bottom" data-toggle="tooltip">
+										<span class="inline-text">{{i18n.virtualpbx.webphoneApp}}</span>
+										<i class="fa fa-phone-square"></i>
+									</a>
+								</li>
+								<li id="main_topbar_help">
+									<a href="#" class="links" id="main_topbar_help_link" data-title="{{i18n.virtualpbx.data_title.learn_more}}" data-placement="bottom" data-toggle="tooltip">
+										<span class="inline-text">{{i18n.virtualpbx.topbar.learn_more}}</span>
+										<i class="fa fa-graduation-cap"></i>
+									</a>
+								</li>
+								<li id="main_topbar_store">
+									<a href="#" class="links" id="main_topbar_store_link" data-title="{{i18n.virtualpbx.data_title.store}}" data-placement="bottom" data-toggle="tooltip">
+										<span class="inline-text">{{i18n.virtualpbx.topbar.store}}</span>
+										<i class="fa fa-shopping-cart"></i>
+									</a>
+								</li>	
+							</ul>
+						</div>
+					</div>
+				</li>
+				<li id="main_topbar_appmenu" style="display: none;">
+					<div class="navdropdown"><a href="#" class="links"><i class="fa fa-navicon"></i></a>
+					<div class="navdropdown-content">
+						<ul id="main_nav_menu">
+							<li id="main_topbar_dashboard" style="display: none;">
+								<a href="#" class="links" id="main_topbar_dashboard_link" data-original-title="Dashboard" data-placement="bottom"><span class="inline-text" id="main_topbar_dashboard">Dashboard</span><i class="fa fa-cogs"></i></a>
+							</li>
+							<li id="main_topbar_callqueues" style="display: none;">
+								<a href="#" class="links" id="main_topbar_callqueues_link" data-original-title="{{i18n.virtualpbx.queues}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.queues}}</span>
+									<i class="fa fa-group"></i>
+								</a>
+							</li>
+							<li id="main_topbar_callqueues_pro" style="display: none;">
+								<a href="#" class="links" id="main_topbar_callqueues_pro_link" data-original-title="{{i18n.virtualpbx.queues_pro}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.queues_pro}}</span>
+									<i class="fa fa-group"></i>
+								</a>
+							</li>
+							<li id="main_topbar_blacklists" style="display: none;">
+								<a href="#" class="links" id="main_topbar_blacklists_link" data-original-title="{{i18n.virtualpbx.blacklists}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.blacklists}}</span>
+									<i class="fa fa-ban"></i>
+								</a>
+							</li>
+							<li id="main_topbar_callflows" style="display: none;">
+								<a href="#" class="links" id="main_topbar_callflows_link" data-original-title="{{i18n.virtualpbx.callflows}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.callflows}}</span>
+									<i class="fa fa-group"></i>
+								</a>
+							</li>
+							<li id="main_topbar_calllogs" style="display: none;">
+								<a href="#" class="links" id="main_topbar_calllogs_link" data-original-title="{{i18n.virtualpbx.calllogs}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.calllogs}}</span>
+									<i class="fa fa-exchange"></i>
+								</a>
+							</li>
+							<li id="main_topbar_dynamic_callerid" style="display: none;">
+								<a href="#" class="links" id="main_topbar_dynamic_callerid_link" data-original-title="{{i18n.virtualpbx.dynamic_callerid}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.dynamic_callerid}}</span>
+									<i class="fa fa-group"></i>
+								</a>
+							</li>
+							<li id="main_topbar_private_recording" style="display: none;">
+								<a href="#" class="links" id="main_topbar_private_recording_link" data-original-title="{{i18n.virtualpbx.call_recording}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.call_recording}}</span>
+									<i class="fa fa-microphone"></i>
+								</a>
+							</li>
+							<li id="main_topbar_fax" style="display: none;">
+								<a href="#" class="links" id="main_topbar_fax_link" data-original-title="{{i18n.virtualpbx.faxApp}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.faxApp}}</span>
+									<i class="fa fa-fax"></i>
+								</a>
+							</li>
+							<li id="main_topbar_monitor" style="display: none;">
+								<a href="#" class="links" id="main_topbar_monitor_link" data-original-title="{{i18n.virtualpbx.monitor}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.monitor}}</span>
+									<i class="fa fa-tasks"></i>
+								</a>
+							</li>
+
+							<li id="main_topbar_numbers" style="display: none;">
+								<a href="#" class="links" id="main_topbar_numbers_link" data-original-title="{{i18n.virtualpbx.number_manager}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.number_manager}}</span>
+									<i class="fa fa-list-ol"></i>
+								</a>
+							</li>
+							
+							<li id="main_topbar_recording_manager" style="display: none;">
+								<a href="https://recordings.virtualpbx.com" target="_blank" class="links" id="main_topbar_recording_manager_link" data-original-title="{{i18n.virtualpbx.recordingManager}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.recordingManager}}</span>
+									<i class="fa fa-microphone"></i>
+								</a>
+							</li>
+							<li id="main_topbar_reports" style="display: none;">
+								<a href="https://reports.virtualpbx.com" target="_blank" class="links" id="main_topbar_reports_link" data-original-title="{{i18n.virtualpbx.reports}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.reports}}</span>
+									<i class="fa fa-signal"></i>
+								</a>
+							</li>
+							<li id="main_topbar_pbxs" style="display: none;">
+								<a href="#" class="links" id="main_topbar_pbxs_link" data-original-title="{{i18n.virtualpbx.pbxApp}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.pbxApp}}</span>
+									<i class="fa fa-server"></i>
+								</a>
+							</li>
+							<li id="main_topbar_userportal" style="display: none;">
+								<a href="#" class="links" id="main_topbar_userportal_link" data-original-title="{{i18n.virtualpbx.userPortal}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.userPortal}}</span>
+									<i class="fa fa-street-view"></i>
+								</a>
+							</li>
+							<li id="main_topbar_voicemail" style="display: none;">
+								<a href="#" class="links" id="main_topbar_voicemail_link" data-original-title="{{i18n.virtualpbx.voicemailApp}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.voicemailApp}}</span>
+									<i class="fa icon-telicon-voicemail"></i>
+								</a>
+							</li>
+							<li id="main_topbar_webhooks" style="display: none;">
+								<a href="#" class="links" id="main_topbar_webhooks_link" data-original-title="{{i18n.virtualpbx.web_hooks}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.web_hooks}}</span>
+									<i class="fa fa-rocket"></i>
+								</a>
+							</li>
+							<li id="main_topbar_integration_aws" style="display: none;">
+								<a href="#" class="links" id="main_topbar_integration_aws_link" data-original-title="{{i18n.virtualpbx.integration_aws}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.integration_aws}}</span>
+									<i class="fa fa-plug"></i>
+								</a>
+							</li>
+							<li id="main_topbar_integration_ms_teams" style="display: none;">
+								<a href="https://virtualpbx.connecttoteams.com" class="links" target="_blank" id="main_topbar_main_topbar_integration_ms_teams_link" data-original-title="{{i18n.virtualpbx.integration_ms_teams}}" data-placement="bottom">
+									<span class="inline-text">{{i18n.virtualpbx.integration_ms_teams}}</span>
+									<i class="fa fa-plug"></i>
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
 				</li>
 				<li id="main_topbar_signout">
 					<a href="javascript:void(0);" class="links" id="main_topbar_signout_link">
@@ -34,6 +187,8 @@
 			</ul>
 		</div>
 	</nav>
+
+	<div id="maintenance-notice" style="display: none;">Maintenance is in progress. All features continue to operate normally. Configuration changes made during maintenance may be reverted. <a href="https://status.virtualpbx.com/incidents/jjxmk68bjk94" target="_blank" style="color: #fff;">View platform status &rarr;</a></div>
 </header>
 
 <div class="core-content" id="monster_content"></div>
@@ -41,7 +196,7 @@
 <footer class="core-footer{{#if jiraFeedback.enabled}} feedback-enabled{{/if}}">
 	{{#unless hidePowered}}
 	<span class="powered-by">
-		<a href="http://www.2600hz.com/" target="_blank" id="powered">{{i18n.poweredBy}} 2600hz</a>
+		<a href="http://virtualpbx.com/" target="_blank" id="powered">{{i18n.poweredBy}} VirtualPBX</a>
 		<span class="tag-version"></span>
 	</span>
 	{{/unless}}

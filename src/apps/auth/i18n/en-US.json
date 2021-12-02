@@ -1,5 +1,5 @@
 {
-	"welcome": "Your Unified Communications Platform.",
+	"welcome": "Trusted VoIP for Any Office, Anywhere.",
 	"password": "Password",
 	"rememberMe": "Remember me",
 	"forgotPassword": "Forgot your info?",
@@ -53,7 +53,7 @@
 				"update": "Your password was successfully updated"
 			},
 			"error": {
-				"password": "Your password wasn't updated, please try again."
+				"password": "Password typed don't match. Please retype your new password"
 			}
 		}
 	},

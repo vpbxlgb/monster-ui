@@ -1,0 +1,68 @@
+<div class="account-content-wrapper">
+	<ul class="list-settings">
+		<li class="settings-item clearfix open" data-name="account_name">
+			<a class="settings-link clearfix">
+				<!--<span class="title">{{ i18n.resellerUsage.title }}</span>-->
+				<span class="description">{{i18n.resellerUsage.description}} {{account.reseller_account.product.name}} {{account.reseller_account.plan.name}} </span>
+			</a>
+			<div class="settings-item-content" style="display: block;">
+				<div class="row-fluid">
+					<div class="span12">
+						<form class="form-horizontal" id="form_account_name">
+							<div class="control-group">
+								<label class="control-label">{{ i18n.resellerUsage.domestic }}</label>
+								<div class="controls">
+									<div class="plain-text">{{account.reseller_account.plan.traffic.domestic}}</div>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{{ i18n.resellerUsage.international }}</label>
+								<div class="controls">
+									<div class="plain-text">{{account.reseller_account.plan.traffic.international}}</div>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{{ i18n.resellerUsage.voip }}</label>
+								<div class="controls">
+									<div class="plain-text">{{account.reseller_account.plan.traffic.voip}}</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</li>
+		<li class="settings-item clearfixm open" data-name="account_name">
+			<a class="settings-link clearfix">
+				<!--<span class="title">{{ i18n.resellerUsage.title }}</span>-->
+				<span class="description">{{i18n.resellerUsage.usage_description}} {{account.reseller_account.billing.bill_cycle_date}}</span>
+			</a>
+			<div class="settings-item-content" style="display: block;">
+				<div class="row-fluid">
+					<div class="span12">
+						<form class="form-horizontal" id="form_account_name">
+							<div class="control-group">
+								<label class="control-label">{{ i18n.resellerUsage.domestic }}</label>
+								<div class="controls">
+									<div class="plain-text">{{account.reseller_account.usage.traffic.domestic}}</div>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{{ i18n.resellerUsage.international }}</label>
+								<div class="controls">
+									<div class="plain-text">{{account.reseller_account.usage.traffic.international}}</div>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{{ i18n.resellerUsage.voip }}</label>
+								<div class="controls">
+									<div class="plain-text">{{account.reseller_account.usage.traffic.voip}}</div>
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>

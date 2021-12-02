@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "dash-beta": {
+      "hosting": {
+        "dash-beta": [
+          "dashdev"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "dash-beta"
+  }
+}

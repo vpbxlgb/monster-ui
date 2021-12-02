@@ -1,7 +1,8 @@
 define(function(require) {
 	var $ = require('jquery'),
 		_ = require('lodash'),
-		monster = require('monster');
+		monster = require('monster'),
+		virtualpbx = require('virtualpbx');
 
 	var appSubmodules = [
 		'account',
@@ -11,7 +12,12 @@ define(function(require) {
 		'servicePlan',
 		'transactions',
 		'trunks',
-		'user'
+		'user',
+		'resellerPlan',
+		'resellerInvoices',
+		'resellerPaymentmethod',
+		'resellerContact',
+		'resellerUsage'
 	];
 
 	require(_.map(appSubmodules, function(name) {
@@ -45,6 +51,7 @@ define(function(require) {
 			'myaccount.updateMenu': '_updateMenu',
 			'myaccount.events': '_myaccountEvents',
 			'myaccount.renderNavLinks': '_renderNavLinks',
+			'myaccount.renderDNDLink': '_renderDNDLink',
 			'myaccount.renderSubmodule': '_renderSubmodule',
 			'myaccount.openAccordionGroup': '_openAccordionGroup',
 			'myaccount.UIRestrictionsCompatibility': '_UIRestrictionsCompatibility',
@@ -277,6 +284,8 @@ define(function(require) {
 				$('.core-absolute').append(myaccountHtml);
 
 				self._renderNavLinks();
+				
+				self._renderDNDLink();
 
 				self.bindEvents(myaccountHtml);
 
@@ -332,6 +341,40 @@ define(function(require) {
 					navHtml.insertAfter(navLinks.find('#main_topbar_apploader'));
 				}
 			});
+		},
+
+		// Also used by masquerading, account app
+		_renderDNDLink: function() {
+			var self = this,
+				currentUser = monster.apps.auth.currentUser;
+
+			virtualpbx.checkAgentStatus(function(enableDND){
+				if (enableDND) {
+					if (typeof currentUser.do_not_disturb === 'undefined') {
+						currentUser.do_not_disturb = {};
+					}
+					if (typeof currentUser.do_not_disturb.enabled === 'undefined') {
+						currentUser.do_not_disturb.enabled = false;
+					}
+				
+					var navLinks = $('#main_topbar_nav'),
+							dataTemplate = {
+								status: currentUser.do_not_disturb.enabled
+							},
+							navHtml = $(self.getTemplate({
+								name: 'do_not_disturb',
+								data: dataTemplate
+							}));
+						/* Hack to redraw myaccount links on masquerading */
+						navLinks.find('#main_topbar_status').remove();
+						navHtml.insertAfter(navLinks.find('#main_topbar_myaccount'));
+		
+						virtualpbx.configurePlanUI(navLinks);
+
+						monster.ui.tooltips(navHtml);
+				}
+			});
+			
 		},
 
 		/**
@@ -424,6 +467,43 @@ define(function(require) {
 
 				monster.pub('core.hideTopbarDropdowns');
 				self.clickMyAccount();
+			});
+
+			navLinks.on('click', '#main_topbar_status_link', function(e) {
+				e.preventDefault();
+
+				monster.pub('core.hideTopbarDropdowns');
+
+				self.toggleDoNotDisturb( function() {
+					
+					if (document.getElementById('users_container')) {
+						monster.pub('voip.users.render');
+					}
+					
+					self._renderDNDLink();
+				});
+			});
+		},
+
+		myaccountUpdateUser: function(userData, callback) {
+			var self = this;
+
+			self.myaccountUpdateUserAPI(userData, callback, self.accountId);
+		},
+
+		myaccountUpdateUserAPI: function(userData, callback, accountId) {
+			var self = this;
+
+			self.callApi({
+				resource: 'user.update',
+				data: {
+					accountId: accountId,
+					userId: userData.id,
+					data: userData
+				},
+				success: function(userData) {
+					callback && callback(userData);
+				}
 			});
 		},
 
@@ -938,7 +1018,7 @@ define(function(require) {
 					});
 
 			link
-				.css('background-color', '#2297FF')
+				.css('background-color', '#2b96bd')
 				.animate({
 					backgroundColor: '#f6f6f6'
 				}, 2000);
@@ -1044,6 +1124,21 @@ define(function(require) {
 			});
 		},
 
+		getUser: function(userId, callback) {
+			var self = this;
+
+			self.callApi({
+				resource: 'user.get',
+				data: {
+					accountId: self.accountId,
+					userId: userId
+				},
+				success: function(user) {
+					callback && callback(user.data);
+				}
+			});
+		},
+
 		updateUser: function(userToUpdate, callback) {
 			var self = this;
 
@@ -1056,6 +1151,65 @@ define(function(require) {
 				},
 				success: function(savedUser) {
 					callback && callback(savedUser.data);
+				}
+			});
+		},
+
+		toggleDoNotDisturb: function(callback) {
+			var self = this;
+
+			self.getUser(monster.apps.auth.currentUser.id, function(userToSave){
+				if (typeof userToSave.do_not_disturb === 'undefined') {
+					userToSave.do_not_disturb = {};
+				}
+				if (typeof userToSave.do_not_disturb.enabled === 'undefined') {
+					userToSave.do_not_disturb.enabled = false;
+				}
+				userToSave.do_not_disturb.enabled = userToSave.do_not_disturb.enabled ? false : true;
+
+				self.myaccountUpdateUser(userToSave, function(data) {
+					self.callApi({
+						resource: 'user.updatePresence',
+						data: {
+							accountId: self.accountId,
+							userId: userToSave.id,
+							data: {
+								action: 'set',
+								state: userToSave.do_not_disturb.enabled ? 'confirmed' : 'terminated'
+							}
+						},
+						success: function(data, status) {
+							callback();
+						},
+						error: function() {
+							console.log('Failed to update presence state');
+						}
+					});
+					
+				});
+			});
+			
+		},
+
+		// Qubicle recipients endpoints
+		checkQubicleRecipients: function(args) {
+			var self = this;
+
+			self.callApi({
+				resource: 'qubicleRecipients.list',
+				data: {
+					accountId: self.accountId,
+					filters: {
+						paginate: false
+					}
+				},
+				success: function(data, status) {
+					var found = _.findIndex(data.data, ['id', monster.apps.auth.currentUser.id]);
+					var isAgent = found > 0;
+					args.hasOwnProperty('success') && args.success(isAgent);
+				},
+				error: function(parsedError) {
+					args.hasOwnProperty('error') && args.error(parsedError);
 				}
 			});
 		},

@@ -1,7 +1,8 @@
 define(function(require) {
 	var $ = require('jquery'),
 		_ = require('lodash'),
-		monster = require('monster');
+		monster = require('monster'),
+    virtualpbx = require('virtualpbx');
 
 	var app = {
 
@@ -47,7 +48,18 @@ define(function(require) {
 				apiRoot: monster.config.api.screwdriver,
 				url: 'upgrade',
 				verb: 'POST'
-			}
+			},
+			'virtualpbx.userHash.get': {
+				apiRoot: 'https://us-central1-dashboard-f1c2b.cloudfunctions.net/intercom-user-hash?user_email={email}',
+				url: '',
+				verb: 'GET',
+				generateError: false,
+				removeHeaders: [
+					'X-Kazoo-Cluster-ID',
+					'X-Auth-Token',
+					'Content-Type'
+				]
+			},
 		},
 
 		subscribe: {
@@ -451,6 +463,14 @@ define(function(require) {
 						self.defaultApp = defaultApp;
 
 						self.showAnnouncement(self.originalAccount.announcement);
+						
+						monster.request({
+							resource: 'virtualpbx.userHash.get',
+							data: {"email": results.user.email},
+							success: function(data, status) {
+								virtualpbx.updateIntercom(data);
+							}
+						})
 
 						if ('ui_flags' in results.user && results.user.ui_flags.colorblind) {
 							$('body').addClass('colorblind');
@@ -816,6 +836,10 @@ define(function(require) {
 				self.bindLoginBlock(templateData);
 				template.find('.powered-by-block').append($('.core-footer .powered-by'));
 			});
+
+			window.Intercom('update', {
+        		"hide_default_launcher": false
+        	});
 		},
 
 		renderLogo: function(template, callback) {
@@ -826,27 +850,31 @@ define(function(require) {
 					template.find('.logo-block').css('background-image', 'url(' + formattedURL + ')');
 				};
 
-			self.callApi({
-				resource: 'whitelabel.getLogoByDomain',
-				data: {
-					domain: domain,
-					generateError: false,
-					dataType: '*'
-				},
-				success: function(_data) {
-					fillLogo(monster.config.api.default + 'whitelabel/' + domain + '/logo?_=' + new Date().getTime());
-					callback();
-				},
-				error: function(error) {
-					if (monster.config.whitelabel.hasOwnProperty('logoPath') && monster.config.whitelabel.logoPath.length) {
-						fillLogo(monster.config.whitelabel.logoPath);
-					} else {
-						fillLogo('apps/auth/style/static/images/logo.svg');
-					}
+			fillLogo('apps/auth/style/static/images/logo.svg');
 
-					callback();
-				}
-			});
+			callback();
+
+			// self.callApi({
+			// 	resource: 'whitelabel.getLogoByDomain',
+			// 	data: {
+			// 		domain: domain,
+			// 		generateError: false,
+			// 		dataType: '*'
+			// 	},
+			// 	success: function(_data) {
+			// 		fillLogo(monster.config.api.default + 'whitelabel/' + domain + '/logo?_=' + new Date().getTime());
+			// 		callback();
+			// 	},
+			// 	error: function(error) {
+			// 		if (monster.config.whitelabel.hasOwnProperty('logoPath') && monster.config.whitelabel.logoPath.length) {
+			// 			fillLogo(monster.config.whitelabel.logoPath);
+			// 		} else {
+			// 			fillLogo('apps/auth/style/static/images/logo.svg');
+			// 		}
+
+			// 		callback();
+			// 	}
+			// });
 		},
 
 		paintSSOImgElement: function(container, pSrc) {
@@ -1149,7 +1177,7 @@ define(function(require) {
 
 		_logout: function() {
 			var self = this;
-
+			window.Intercom('shutdown');
 			monster.util.logoutAndReload();
 		},
 

@@ -1,0 +1,79 @@
+<div class="edit-contact">
+	<div class="edit-billtocontact" style="padding-top:25px;">
+		<div class="content">
+			<form id="form_contact" class="form-horizontal">
+				<div class="tabs-section active" data-section="billing-contact">
+					<div class="control-group">
+						<label class="control-label" for="firstName">{{ i18n.resellerContact.edit_contact.firstname }}</label>
+						<div class="controls">
+							<input type="text" id="firstname" name="firstname" value="{{ billing.bcontact.firstname }}">
+						</div>
+					</div>	
+					<div class="control-group">
+						<label class="control-label" for="lastname">{{ i18n.resellerContact.edit_contact.lastname }}</label>
+						<div class="controls">
+							<input type="text" id="lastname" name="lastname" value="{{ billing.bcontact.lastname }}">
+						</div>
+					</div>								
+					<div class="control-group">
+						<label class="control-label" for="address1">{{ i18n.resellerContact.edit_contact.address1 }}</label>
+						<div class="controls">
+							<input type="text" id="address1" name="address1" value="{{ billing.bcontact.address1 }}">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="address2">{{ i18n.resellerContact.edit_contact.address2 }}</label>
+						<div class="controls">
+							<input type="text" id="address2" name="address2" value="{{ billing.bcontact.address2 }}">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="city">{{ i18n.resellerContact.edit_contact.city }}</label>
+						<div class="controls">
+							<input type="text" id="city" name="city" value="{{ billing.bcontact.city }}">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="state">{{ i18n.resellerContact.edit_contact.state }}</label>
+						<div class="controls">
+							<input type="text" id="state" name="state" value="{{ billing.bcontact.state }}">
+						</div>
+					</div>
+
+					<div class="control-group">
+						<label class="control-label" for="state">{{ i18n.resellerContact.edit_contact.country }}</label>
+						<div class="controls">
+							<input type="text" id="country" name="country" value="{{ billing.bcontact.country }}">
+						</div>
+					</div>		
+
+					<div class="control-group">
+						<label class="control-label" for="state">{{ i18n.resellerContact.edit_contact.zipcode }}</label>
+						<div class="controls">
+							<input type="text" id="zipcode" name="zipcode" value="{{ billing.bcontact.zipcode }}">
+						</div>
+					</div>		
+
+					<div class="control-group">
+						<label class="control-label" for="state">{{ i18n.resellerContact.edit_contact.email }}</label>
+						<div class="controls">
+							<input type="text" id="email" name="email" value="{{ billing.bcontact.email }}">
+						</div>
+					</div>														
+				</div>
+			</form>
+		</div>
+
+		<div class="actions clearfix" style="border-top:1px solid #CCCCCC;height: 30px;line-height: 30px;padding: 15px;">
+			<div class="pull-right">
+				<a class="cancel-link monster-link blue" href="javascript:void(0);">{{ i18n.cancel }}</a>
+				<button class="monster-button monster-button-success save" style="margin-left: 10px;">
+					{{ i18n.saveChanges }}
+				</button>
+			</div>
+		</div>
+	</div>
+</div>    

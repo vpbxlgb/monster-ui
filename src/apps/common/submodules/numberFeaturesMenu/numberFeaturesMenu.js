@@ -1,7 +1,8 @@
 define(function(require) {
 	var $ = require('jquery'),
 		_ = require('lodash'),
-		monster = require('monster');
+		monster = require('monster'),
+		virtualpbx = require('virtualpbx');
 
 	return {
 
@@ -22,6 +23,8 @@ define(function(require) {
 				}));
 
 			self.numberFeaturesMenuBindEvents(template, phoneNumber, args.afterUpdate);
+			
+			virtualpbx.configurePlanUI(template);
 
 			args.target.append(template);
 		},

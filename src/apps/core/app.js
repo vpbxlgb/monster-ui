@@ -1,7 +1,8 @@
 define(function(require) {
 	var $ = require('jquery'),
 		_ = require('lodash'),
-		monster = require('monster');
+		monster = require('monster'),
+		virtualpbx = require('virtualpbx');
 
 	var appSubmodules = [
 		'alerts',
@@ -40,7 +41,8 @@ define(function(require) {
 		},
 
 		//Default app to render if the user is logged in, can be changed by setting a default app
-		_defaultApp: 'appstore',
+		_defaultApp: 'voip',
+		// _defaultApp: 'accounts', // ADMINTOOLS
 
 		/**
 		 * Holds timeout IDs for global progress indicator
@@ -188,6 +190,9 @@ define(function(require) {
 					data: app
 				})) : '';
 
+			// VirtualPBX Blank out app in menu bar
+			$new = '';
+
 			$current
 				.hide()
 				.empty()
@@ -220,28 +225,43 @@ define(function(require) {
 		 */
 		_loadApps: function(args) {
 			var self = this,
-				loggedInAppsToLoad = _
+				additionalLoggedInApps = [];
+
+			virtualpbx.filterApps(['voip', 'userportal', 'fax', 'callqueues', 'callqueues-pro', 'pbxs', 'calllogs', 'voicemails', 'webhooks', 'blacklists', 'call-recording', 'integration_aws', 'operator', 'callflows', 'dynamic-callerid', 'numbers'], function(appList) {
+				additionalLoggedInApps = appList;
+			});
+			
+			var	loggedInAppsToLoad = _
 					.chain(monster.config.whitelabel)
-					.get('additionalLoggedInApps', [])
+					.get('additionalLoggedInApps', additionalLoggedInApps)
 					.concat(self.getPlugins())
 					.reject(function(name) {
 						return _.has(monster.apps, name);
 					})
 					.value();
-
+			
 			monster.parallel(_.map(loggedInAppsToLoad, function(name) {
 				return function(callback) {
 					monster.apps.load(name, callback);
 				};
 			}), function afterBaseAppsLoad(err, result) {
-				// If admin with no app, go to app store, otherwite, oh well...
-				var defaultApp = monster.util.isAdmin()
-					? args.defaultApp || self._defaultApp
-					: args.defaultApp;
+				
+				self.vpbxBindMenu();
 
+				virtualpbx.configureUI();
+				virtualpbx.checkAccountMenu();
+				virtualpbx.checkWebPhone();
+				virtualpbx.checkMaintenance();
+
+				// If admin with no app, go to app store, otherwite, oh well...
+				// var defaultApp = monster.util.isAdmin()
+				// 	? args.defaultApp || self._defaultApp
+				// 	: args.defaultApp;
+				var defaultApp = virtualpbx.appFlags.userDefaultApp;
+				// var defaultApp = 'accounts'; // DASHTOOLS
 				// Now that the user information is loaded properly, check if we tried to force the load of an app via URL.
 				monster.routing.parseHash();
-
+				
 				// If there wasn't any match, trigger the default app
 				if (!monster.routing.hasMatch()) {
 					if (_.isUndefined(defaultApp)) {
@@ -365,7 +385,7 @@ define(function(require) {
 			});
 
 			container.find('#main_topbar_brand').on('click', function() {
-				var appName = monster.apps.auth.defaultApp;
+				var appName = virtualpbx.appFlags.userDefaultApp;
 
 				if (appName) {
 					monster.routing.goTo('apps/' + appName);
@@ -854,10 +874,13 @@ define(function(require) {
 				shortcut,
 				appsToBind = {
 					voip: 'shift+v',
-					accounts: 'shift+a',
-					callflows: 'shift+c',
-					branding: 'shift+b',
-					provisioner: 'shift+p'
+					'call-recording': 'shift+c',
+					userportal: 'shift+u',
+					voicemails: 'shift+m'
+					// accounts: 'shift+a',
+					// callflows: 'shift+c',
+					// branding: 'shift+b',
+					// provisioner: 'shift+p'
 				};
 
 			_.each(apps, function(app) {
@@ -898,6 +921,48 @@ define(function(require) {
 			if (except !== 'main_topbar_alerts_link') {
 				monster.pub('core.alerts.hideDropdown');
 			}
+		},
+
+		vpbxBindMenu: function() {
+			var self = this;			
+			// Enable Custom Menu Links
+			Object.keys(virtualpbx.appFlags.enabled_ui_apps).forEach(function(key){
+				$(virtualpbx.appFlags.enabled_ui_apps[key]).on('click', function() {
+					if (monster.apps[key] != undefined) {
+						monster.apps[key].render();
+						self.hideAccountToggle();
+					}
+				});
+			});
+
+			$('#main_topbar_fax_link').on('click', function() { 
+				if('fax' in monster.apps) { 
+					monster.apps['fax'].render(); 
+			    } 
+				self.hideAccountToggle(); 
+			}); 
+			
+			// Hosted Support link
+			$('#main_topbar_help_link').on('click', function() {
+				// TODO Support URL from DB
+				window.open('https://www.virtualpbx.com/support/contact/', 'VirtualPBX Support', '');
+				return false;
+			});
+
+			// Webphone link
+			$('#main_topbar_webphone_link').on('click', function() {
+				// TODO Support URL from DB
+				window.open('https://webphone.virtualpbx.net/login?accountId=' + monster.apps.auth.currentAccount.id + '&userId=' +  monster.apps.auth.currentUser.id + '&auth=' +  self.getAuthToken(), 'VirtualPBX Webphone', '');
+				return false;
+			});
+
+			// Store link
+			$('#main_topbar_store_link').on('click', function() {
+				virtualpbx.getStoreUrl(function(store_url){
+					window.open(store_url, 'VirtualPBX Store', '');
+					return false;
+				});
+			});
 		}
 	};
 

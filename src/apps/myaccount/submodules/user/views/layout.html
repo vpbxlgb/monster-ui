@@ -17,13 +17,7 @@
 							<div class="control-group">
 								<label class="control-label" for="email">{{ i18n.user.email }}</label>
 								<div class="controls">
-									<input type="email" placeholder="{{ i18n.placeholderEmail }}" id="email" name="email" value="{{user.email}}" data-original_value="{{user.email}}"/>
-								</div>
-							</div>
-							<div class="action-group clearfix">
-								<div class="action-bar">
-									<button type="button" class="monster-button cancel">{{ i18n.cancel }}</button>
-									<button type="submit" class="monster-button-success change" data-module="user" data-field="email">{{ i18n.saveChanges }}</button>
+									<div class="plain-text">{{user.email}}</div>
 								</div>
 							</div>
 						</form>

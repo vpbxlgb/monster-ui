@@ -135,11 +135,11 @@ define(function(require) {
 						$topbarAlert = $navLinks.find('#main_topbar_alerts'),
 						$template = initTemplate(data);
 
-					if ($topbarAlert.length === 0) {
-						$template.insertBefore($navLinks.find('#main_topbar_signout'));
-					} else {
-						$topbarAlert.replaceWith($template);
-					}
+					// if ($topbarAlert.length === 0) {
+					// 	$template.insertBefore($navLinks.find('#main_topbar_signout'));
+					// } else {
+					// 	$topbarAlert.replaceWith($template);
+					// }
 				};
 
 			monster.parallel({

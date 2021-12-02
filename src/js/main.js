@@ -67,7 +67,9 @@ require.config({
 		'toastr': 'js/vendor/toastr-1.3.0',
 		'touch-punch': 'js/vendor/jquery.ui.touch-punch.min',
 		'validate': 'js/vendor/jquery.validate.min',
-		'wysiwyg': 'js/vendor/bootstrap.wysiwyg.min'
+		'wysiwyg': 'js/vendor/bootstrap.wysiwyg.min',
+		'virtualpbx': 'js/virtualpbx',
+		'zuora': 'js/zuora-min'
 	},
 	shim: {
 		'bootstrap': ['jqueryui'],
@@ -106,7 +108,13 @@ require.config({
 			exports: 'renderjson'
 		},
 		'touch-punch': ['jqueryui'],
-		vfs_fonts: ['pdfmake']
+		vfs_fonts: ['pdfmake'],
+		'virtualpbx': {
+			'exports': 'virtualpbx'
+		},
+		'zuora': {
+			'exports': 'zuora'
+		}
 	},
 	urlArgs: 'bust=' + (new Date()).getTime()
 });

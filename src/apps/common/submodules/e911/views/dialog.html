@@ -42,11 +42,12 @@
 			{{#if status}}
 				<div class="control-group gmap_link_div" style="display: none;">
 					<div class="controls">
-						<a class="monster-link" id="gmap_link" href="http://maps.google.com/maps?q=${latitude},+${longitude}+(Your+E911+Location)&iwloc=A&hl=en" target="_blank">{{ i18n.e911.verifyLocation }}</a>
+						<a class="monster-link" id="gmap_link" href="https://maps.google.com/maps?q=${latitude},+${longitude}+(Your+E911+Location)&iwloc=A&hl=en" target="_blank">{{ i18n.e911.verifyLocation }}</a>
 					</div>
 				</div>
 			{{/if}}
-			<div class="control-group">
+			<!-- <div class="control-group">
+				
 				<label for="notification_contact_emails" class="control-label">
 					{{ i18n.e911.email.label}}
 				</label>
@@ -55,7 +56,7 @@
 						{{notification_contact_emails}}
 					</textarea>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<div class="row-fluid">

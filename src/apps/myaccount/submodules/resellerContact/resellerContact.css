@@ -1,0 +1,29 @@
+.edit-contact .actions {
+	border-top: 1px solid #CCCCCC;
+	height: 30px;
+	line-height: 30px;
+	padding: 15px;
+}
+
+.edit-contact .actions button {
+	margin-left: 10px;
+}
+
+.edit-contact .title-bar {
+	border-bottom: 1px solid #ccc;
+	margin-bottom: 20px;
+	padding: 15px 0;
+}
+
+.edit-contact .title-bar .nav-pills {
+	margin-top: 24px;
+	margin-right: 15px;
+}
+
+.edit-contact .helper {
+	margin: 0 30px;
+}
+
+.edit-contact .helper i {
+	margin-right: 5px;
+}

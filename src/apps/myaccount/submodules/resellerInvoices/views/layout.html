@@ -1,0 +1,38 @@
+<div class="account-content-wrapper">
+	<ul class="list-settings">
+		<li class="settings-item clearfix open" data-name="account_name">
+			<div class="settings-link clearfix">
+				<span class="description">{{ i18n.resellerInvoices.description}}</span>
+			</div>
+			<div class="settings-item-content" style="display: block; padding: 0px 15px;">
+				<div class="table-content">
+					<table class="table">
+						<thead>
+							<tr>
+								<th>{{ i18n.resellerInvoices.date}}</th>
+								<th>{{ i18n.resellerInvoices.invoice_number}}</th>
+								<th>{{ i18n.resellerInvoices.amount}}</th>
+								<th>Download</th>
+							</tr>
+						</thead>
+						<tbody>
+							{{#each payments}}
+							<div class="item-row"></div>
+							<tr class="invoice" data-invoice="{{ this.invoiceId }}" data-date="{{ this.paymentDate }}">
+								<td>{{ this.paymentDate }}</td>
+								<td>{{ this.paymentNumber }}</td>
+								<td>{{ @root.i18n.currencyUsed }}{{ this.paymentAmount }}</td>
+								<td><button type="button" class="monster-button download" data-invoice="{{ this.invoiceId }}" data-date="{{ this.paymentDate }}">
+									Download
+								</button></td>
+							</tr>
+							{{else}}
+							<td colspan="3">{{ i18n.resellerInvoices.no_invoices}}</td>
+							{{/each}}
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>

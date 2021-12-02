@@ -462,5 +462,50 @@
 		"switchBackTo": "Switch back to",
 		"myAccount": "My account",
 		"currentlyViewing": "Currently Viewing"
-	}
+	},
+		"resellerPlan": {
+			"title": "Service Plan",
+			"name": "Plan Name",
+			"plan": "Plan",
+			"plan_minutes": "Included plan minutes",
+			"next_bill_cycle_date": "Next Billing Date",
+			"bill_balance": "Current Balance",
+			"your_plan_is": "Your current plan is the",
+			"billing_address": "Billing Address",
+			"not_available": "Plan information is not currently available.",
+			"notice": "Please note that it takes up to 24 hours for your charges to update. You will receive monthly invoices detailing your account usage and any applicable charges. Have questions about your account? Give us a call at 888.825.0800."
+		},
+		"resellerInvoices": {
+			"title": "Invoices",
+			"description": "If you have questions regarding your account, please contact our Billing team.",
+			"usage_description": "Minutes used this billing cycle, ending on",
+			"date": "Date",
+			"invoice_number": "Invoice Number",
+			"amount": "Amount",
+			"balance": "Balance",
+			"no_invoices": "No invoices available"
+		},
+		"resellerPaymentmethod": {
+			"title": "Payment Method",
+			"description": "Please update your Payment Method"		
+		},
+		"resellerContact": {
+			"title": "Contact",
+			"description": "Your Billing Contact",
+			"contact_type": {
+				"btc": "Bill To Contact",
+				"stc": "Sold To Contact"
+			},	
+			"edit_contact": {
+				"firstname": "First Name",
+				"lastname": "Last Name",
+				"address1": "Address1",
+				"address2": "Address2",
+				"city": "City",
+				"state": "State",
+				"country": "Country",
+				"zipcode": "Zip Code",
+				"email": "Work Email"
+			}
+		}	
 }

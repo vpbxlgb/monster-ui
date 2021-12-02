@@ -1111,5 +1111,45 @@
 
 	"nav": {
 		"masquerading": "! Masquerading"
+	},
+	
+	"virtualpbx": {
+		"reports": "Reports",
+		"webphoneApp": "Webphone",
+		"webstoreSite": "Store",
+		"helpLink": "Support",
+		"blacklists": "Blacklists",
+		"dynamic_callerid": "Dynamic Caller ID",
+		"queues": "ACD Queues",
+		"queues_pro": "ACD Queues Pro",
+		"faxApp": "Faxes",
+		"monitor": "Monitor",
+		"number_manager": "Number Manager",
+		"recordingManager": "Recording Manager",
+		"userPortal": "User Portal",
+		"voicemailApp": "Voicemails",
+		"pbxApp": "SIP Trunks",
+		"calllogs": "Call Logs",
+		"web_hooks": "Webhooks",
+		"call_recording": "Call Recording",
+		"integration_aws": "Integration: AWS",
+		"integration_ms_teams": "Integration: Teams",
+		"callflows": "Call Flows",
+		"do_not_disturb": "DND",
+		"toggle_do_not_disturb": "Toggle do not disturb",
+		"available": "Available",
+		"topbar": {
+			"learn_more": "Learn More",
+			"chat": "Chat with Us",
+			"store": "Online Store"
+		},
+		"data_title": {
+			"help": "Resources for your account",
+			"learn_more": "Online resources and tutorials",
+			"chat": "Chat with a team member",
+			"store": "Purchase phones and more for your system",
+			"webphone": "Launch the Webphone"
+		} 
+
 	}
 }

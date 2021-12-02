@@ -262,7 +262,7 @@ define(function(require) {
 			// Handle the case where there are no cidrs.
 			// This is allowed as it means the user has cleared their access list.
 			if (cidrList.length === 1 && cidrList[0] === '') {
-				console.log('corrrect');
+				// console.log('corrrect');
 				return true;
 			}
 

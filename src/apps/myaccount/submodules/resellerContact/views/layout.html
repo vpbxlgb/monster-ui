@@ -1,0 +1,49 @@
+<div class="account-content-wrapper">
+	<ul class="list-settings">
+		<li class="settings-item clearfix open" data-name="account_name">
+			<div class="settings-link clearfix">
+				<span class="description">{{ i18n.resellerContact.description }}:</span>
+			</div>
+			<div class="settings-item-content" style="display: block;">
+				<div class="row-fluid">
+					<div class="span12">
+						<form class="form-horizontal" id="form_account_name">
+							<div class="control-group">
+								<label class="control-label">{{ i18n.resellerContact.contact_type.btc }}:</label>
+								<div class="controls">
+									<div class="plain-text">{{billing.bcontact.name}}</div>
+									<div class="plain-text">{{billing.bcontact.address1}}</div>
+									<div class="plain-text">{{billing.bcontact.address2}}</div>
+									<div class="plain-text">{{billing.bcontact.city}}</div>
+									<div class="plain-text">{{billing.bcontact.state}}</div>
+									<div class="plain-text">{{billing.bcontact.country}}</div>
+									<div class="plain-text">{{billing.scontact.zipcode}}</div>									
+									<div class="plain-text">{{billing.bcontact.email}}</div>
+									<button id="billtocontact" type="button" class="monster-button monster-button-success" 
+										style="margin-top:10px;">{{ i18n.update }}</button>
+								</div>
+							</div>
+							<div class="control-group">
+								<label class="control-label">{{ i18n.resellerContact.contact_type.stc }}:</label>
+								<div class="controls">
+									<div class="plain-text">{{billing.scontact.name}}</div>
+									<div class="plain-text">{{billing.scontact.address1}}</div>
+									<div class="plain-text">{{billing.scontact.address2}}</div>
+									<div class="plain-text">{{billing.scontact.city}}</div>
+									<div class="plain-text">{{billing.scontact.state}}</div>
+									<div class="plain-text">{{billing.scontact.country}}</div>
+									<div class="plain-text">{{billing.scontact.zipcode}}</div>									
+									<div class="plain-text">{{billing.scontact.email}}</div>
+									<button id="soldtocontact" type="button" class="monster-button monster-button-success" 
+										style="margin-top:10px;">{{ i18n.update }}</button>								
+								</div>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</li>
+	</ul>
+</div>
+
+

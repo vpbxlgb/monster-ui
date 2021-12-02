@@ -14,30 +14,36 @@
 				<div class="row-fluid">
 					<div class="span12">
 						<form class="form-horizontal" id="form_account_name">
-							<div class="control-group">
+							<!-- <div class="control-group">
 								<label class="control-label" for="account_name">{{ i18n.account.accountName }}</label>
 								<div class="controls">
 									<input type="text" id="account_name" name="name" value="{{account.name}}" data-original_value="{{account.name}}"/>
 								</div>
-							</div>
+							</div> -->
 							<div class="control-group">
 								<label class="control-label">{{ i18n.account.accountId }}</label>
 								<div class="controls">
 									<div class="plain-text">{{account.id}}</div>
 								</div>
 							</div>
-							<div class="action-group clearfix">
+							<div class="control-group">
+								<label class="control-label">{{ i18n.account.accountRealm }}</label>
+								<div class="controls">
+									<div class="plain-text">{{account.realm}}</div>
+								</div>
+							</div>
+							<!-- <div class="action-group clearfix">
 								<div class="action-bar">
 									<button type="button" class="monster-button cancel">{{ i18n.cancel }}</button>
 									<button type="submit" class="monster-button-success change" data-module="account" data-field="account_name">{{ i18n.saveChanges }}</button>
 								</div>
-							</div>
+							</div> -->
 						</form>
 					</div>
 				</div>
 			</div>
 		</li>
-		<li class="settings-item clearfix" data-name="account_realm">
+		<!-- <li class="settings-item clearfix" data-name="account_realm">
 			<a class="settings-link clearfix">
 				<span class="title">{{ i18n.account.accountRealm }}</span>
 				<span class="description">{{account.realm}}</span>
@@ -67,7 +73,7 @@
 					</div>
 				</div>
 			</div>
-		</li>
+		</li> -->
 
 		<li class="settings-item clearfix" data-name="technical_contact">
 			<a class="settings-link clearfix">
